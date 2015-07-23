@@ -31,9 +31,6 @@ Ext.define('Mba.ux.UpdateApp', {
                 thisNode = xmlDoc.next();
 
                 for(var i=0; i< thisNode.childNodes.length ; i++) {
-                    if (thisNode.childNodes[i].nodeType == 3) {
-                        x= i+1;
-                    }
                     if (thisNode.childNodes[i].textContent == 'bundle-version') {
                         nodeType = thisNode.childNodes[++i].nodeType == 3;
                         current = thisNode.childNodes[i];
