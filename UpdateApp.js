@@ -15,7 +15,6 @@ Ext.define('Mba.ux.UpdateApp', {
     load: function() {
         var me = this;
         Ext.Ajax.request({
-            async: false,
             url: this.getPlist(),
             success: function(res) { 
                 var xmlDoc = null, parser, thisNode, current, xpto;
