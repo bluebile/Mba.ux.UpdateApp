@@ -50,13 +50,11 @@ Ext.define('Mba.ux.UpdateApp', {
 
     verifyAppVersion: function(versionPlist) {
         var me = this;
-        alert('Versão plist: ' + 'itms-services://?action=download-manifest&url=' + me.getPlist());
         var currentVersion = new Ext.Version(this.getCurrentVersion());
         if (currentVersion.isLessThan(versionPlist)) {
             Ext.Msg.confirm(null,
                 'Uma nova versão do aplicativo foi encontrada. Deseja fazer o download?', function(answer) {
                     if (answer == 'sim') {
-                        alert('sim!');
                         window.open('itms-services://?action=download-manifest&url=' + me.getPlist(), '_blank');
                     }
                 }
