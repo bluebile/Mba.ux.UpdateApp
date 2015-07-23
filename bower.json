@@ -1,0 +1,33 @@
+{
+    "name": "Mba.ux.UpdateApp",
+    "version": "0.0.1",
+    "homepage": "https://github.com/bluebile/Mba.ux.UpdateApp",
+    "authors": [
+        "Bluebile <info@bluebile.com>"
+    ],
+    "description": "Solução javascript para a atualização de aplicativos enterprise.",
+    "main": [
+        "UpdateApp.js"
+    ],
+    "keywords": [
+        "senchatouch",
+        "extjs",
+        "ux",
+        "update",
+        "enterprise"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "demo",
+        "ux",
+        "**/*.*~",
+        "Gruntfile.js",
+        "bower.json",
+        "package.json",
+        "test",
+        "tests"
+    ]
+}
