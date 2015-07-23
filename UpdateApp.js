@@ -13,6 +13,11 @@ Ext.define('Mba.ux.UpdateApp', {
         message: 'Uma nova versão do aplicativo foi encontrada. Deseja fazer o download?'
     },
 
+    initialize: function() {
+        this.callParent();
+        document.addEventListener('resume', Ext.Function.bind(this.load, this), false);
+    },
+
     load: function() {
         var me = this;
         Ext.Ajax.request({
@@ -53,6 +58,7 @@ Ext.define('Mba.ux.UpdateApp', {
             Ext.Msg.confirm(null, this.getMessage(), function(answer) {
                 if (answer == 'sim') {
                     window.open('itms-services://?action=download-manifest&url=' + me.getPlist(), '_blank');
+                    navigator.app.exitApp();
                 }
             });
         }

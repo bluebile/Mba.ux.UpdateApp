@@ -29,5 +29,11 @@
         "package.json",
         "test",
         "tests"
-    ]
+    ],
+    "dependencies": {
+        "Mba.ux.BuilderConfig": "v0.0.6"
+    },
+    "cordova" : {
+        "plugin_url": "https://github.com/bluebile/cordova-plugin-exitios.git"
+    }
 }
