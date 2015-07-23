@@ -53,13 +53,11 @@ Ext.define('Mba.ux.UpdateApp', {
             currentVersion = new Ext.Version(this.getCurrentVersion());
         
         if (currentVersion.isLessThan(versionPlist)) {
-            Ext.Msg.confirm(null,
-                this.getMessage(), function(answer) {
-                    if (answer == 'sim') {
-                        window.open('itms-services://?action=download-manifest&url=' + me.getPlist(), '_blank');
-                    }
+            Ext.Msg.confirm(null, this.getMessage(), function(answer) {
+                if (answer == 'sim') {
+                    window.open('itms-services://?action=download-manifest&url=' + me.getPlist(), '_blank');
                 }
-            );
+            });
         }
     },
 
