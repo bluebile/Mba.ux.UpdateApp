@@ -9,7 +9,8 @@ Ext.define('Mba.ux.UpdateApp', {
 
     config: {
         plist: '',
-        currentVersion: ''
+        currentVersion: '',
+        message: 'Uma nova versão do aplicativo foi encontrada. Deseja fazer o download?'
     },
 
     load: function() {
@@ -17,7 +18,7 @@ Ext.define('Mba.ux.UpdateApp', {
         Ext.Ajax.request({
             url: this.getPlist(),
             success: function(res) { 
-                var xmlDoc = null, parser, thisNode, current, xpto;
+                var xmlDoc = null, parser, thisNode, current, nodeType;
                 if (window.DOMParser) {
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(res.responseText, 'text/xml');
@@ -34,11 +35,11 @@ Ext.define('Mba.ux.UpdateApp', {
                         x= i+1;
                     }
                     if (thisNode.childNodes[i].textContent == 'bundle-version') {
-                        xpto = thisNode.childNodes[++i].nodeType == 3;
+                        nodeType = thisNode.childNodes[++i].nodeType == 3;
                         current = thisNode.childNodes[i];
-                        while(xpto) {
+                        while (nodeType) {
                             current = thisNode.childNodes[++i]; 
-                            xpto = current.nodeType == 3;
+                            nodeType = current.nodeType == 3;
                         }
                         me.verifyAppVersion(current.textContent);
                     }
@@ -48,11 +49,12 @@ Ext.define('Mba.ux.UpdateApp', {
     },
 
     verifyAppVersion: function(versionPlist) {
-        var me = this;
-        var currentVersion = new Ext.Version(this.getCurrentVersion());
+        var me = this,
+            currentVersion = new Ext.Version(this.getCurrentVersion());
+        
         if (currentVersion.isLessThan(versionPlist)) {
             Ext.Msg.confirm(null,
-                'Uma nova versão do aplicativo foi encontrada. Deseja fazer o download?', function(answer) {
+                this.getMessage(), function(answer) {
                     if (answer == 'sim') {
                         window.open('itms-services://?action=download-manifest&url=' + me.getPlist(), '_blank');
                     }
