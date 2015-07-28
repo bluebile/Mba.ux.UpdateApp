@@ -1,67 +1,39 @@
-# Plugin javascript para a atualização de aplicativos enterprise (iOS)
+# Plugin para o carregamento e utilização do Google Maps com o Sencha Touch
 
 
 ## Utilização
 
-### Pode ser utilizado em conjunto com o componente BuilderConfig, da seguinte maneira:
-
-```js
-Ext.application({
-    ...
-    beforeInitConfig: function() {
-        var json;
-        Ext.require([ 'Mba.ux.Environment.overrides.BuilderConfig' ], function() {
-            json = Ext.create('Mba.ux.BuilderConfig.loader.Json', {
-                files: {
-                    ...
-                    "updateapp":       'resources/globals/updateapp.js',
-                    ...
-                }
-            });
-
-            Mba.ux.BuilderConfig.setData(json);
-        });
-    },
-
-    ...
-
-    launch: function() {
-        selectTranslate(navigator.language)();
-        var update = Ext.create('Mba.ux.UpdateApp');
-        update.load();
-     	...
-
- 	}
-```
-
-#### O layout do arquivo updateapp.js:
-
-```json
-{
-	plist: 'https://dl.dropboxusercontent.com/u/ProjetoArquitetura.plist',
-	currentVersion: "3.0.0"
-}
-```
-
-### Pode ser utilizado também como config:
-
 ```js
 Ext.application({
     ...
 
+    requires: [
+        ...
+        'Mba.ux.Environment.overrides.*',
+        'Mba.ux.Geolocation'
+        ...
+    ],
+
     launch: function() {
-        selectTranslate(navigator.language)();
-        var update = Ext.create('Mba.ux.UpdateApp', {
-            plist: 'https://package.url.projetc/ProjectName.plist',
-            currentVersion: "3.0.0"
-        });
-        update.load();
-     	...
+        ...
+
+        //Variável google ainda não carregou!
+        // Ext.create('Mba.ux.Geolocation.view.Map', {
+        //     mapOptions: {
+        //         center: new google.maps.LatLng(this.getLatitude(), this.getLongitude()),
+        //         zoom: 4,
+        //         mapTypeId: google.maps.MapTypeId.ROADMAP,
+        //         mapTypeControl: false,
+        //         streetViewControl: false,
+        //         overviewMapControl: false,
+        //         zoomControl: Ext.os.deviceType === 'Desktop' ? true: false
+        //     }
+        // });
+
+        ...
+
  	}
 ```
-
-## Atenção: Deve ser utilizado o locale para o correto funcionamento do alert com a mensagem de atualização.
-
 
 ## Contato
 
