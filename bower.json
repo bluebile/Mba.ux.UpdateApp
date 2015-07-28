@@ -1,20 +1,20 @@
 {
-    "name": "Mba.ux.Geolocation",
+    "name": "Mba.ux.UpdateApp",
     "version": "0.0.1",
-    "homepage": "https://github.com/bluebile/Mba.ux.Geolocation",
+    "homepage": "https://github.com/bluebile/Mba.ux.UpdateApp",
     "authors": [
         "Bluebile <info@bluebile.com>"
     ],
-    "description": "Plugin para utilização de mapas e geolocation em aplicações Senha Touch.",
+    "description": "Solução javascript para a atualização de aplicativos enterprise.",
     "main": [
-        "Geolocation.js"
+        "UpdateApp.js"
     ],
     "keywords": [
         "senchatouch",
         "extjs",
         "ux",
-        "geolocation",
-        "google maps"
+        "update",
+        "enterprise"
     ],
     "license": "MIT",
     "ignore": [
@@ -29,5 +29,11 @@
         "package.json",
         "test",
         "tests"
-    ]
+    ],
+    "dependencies": {
+        "Mba.ux.BuilderConfig": "v0.0.6"
+    },
+    "cordova" : {
+        "plugin_url": "https://github.com/bluebile/cordova-plugin-exitios.git"
+    }
 }
