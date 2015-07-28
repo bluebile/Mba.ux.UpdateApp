@@ -15,21 +15,11 @@ Ext.define('Mba.ux.UpdateApp', {
 
     initialize: function() {
         this.callParent();
-        if (!this.checkSupport()) {
-            return;
-        }
         document.addEventListener('resume', Ext.Function.bind(this.load, this), false);
-    },
-
-    checkSupport: function() {
-        return Ext.os.is.iOS;
     },
 
     load: function() {
         var me = this;
-        if (!me.checkSupport()) {
-            return;
-        }
         Ext.Ajax.request({
             url: this.getPlist(),
             success: function(res) { 
