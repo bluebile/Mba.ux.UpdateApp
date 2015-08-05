@@ -34,6 +34,6 @@
         "Mba.ux.BuilderConfig": "v0.0.7"
     },
     "cordova" : {
-        "plugin_url": "https://github.com/bluebile/cordova-plugin-exitios.git"
+        "id_or_url_plugin": "https://github.com/bluebile/cordova-plugin-exitios.git"
     }
 }
