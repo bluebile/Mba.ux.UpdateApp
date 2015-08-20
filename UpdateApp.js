@@ -32,25 +32,25 @@ Ext.define('Mba.ux.UpdateApp', {
         }
         Ext.Ajax.request({
             url: this.getPlist(),
-            success: function(res) { 
+            success: function(res) {
                 var xmlDoc = null, parser, thisNode, current, nodeType;
                 if (window.DOMParser) {
                     parser = new DOMParser();
                     xmlDoc = parser.parseFromString(res.responseText, 'text/xml');
                 } else {
-                    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                    xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
                     xmlDoc.async = false;
                     xmlDoc.loadXML(res.responseText);
                 }
                 xmlDoc = me.selectXPath('plist/dict/array/dict/dict', xmlDoc);
                 thisNode = xmlDoc.next();
 
-                for(var i=0; i< thisNode.childNodes.length ; i++) {
+                for (var i = 0; i < thisNode.childNodes.length; i++) {
                     if (thisNode.childNodes[i].textContent == 'bundle-version') {
                         nodeType = thisNode.childNodes[++i].nodeType == 3;
                         current = thisNode.childNodes[i];
                         while (nodeType) {
-                            current = thisNode.childNodes[++i]; 
+                            current = thisNode.childNodes[++i];
                             nodeType = current.nodeType == 3;
                         }
                         me.verifyAppVersion(current.textContent);
@@ -63,7 +63,7 @@ Ext.define('Mba.ux.UpdateApp', {
     verifyAppVersion: function(versionPlist) {
         var me = this,
             currentVersion = new Ext.Version(this.getCurrentVersion());
-        
+
         if (currentVersion.isLessThan(versionPlist)) {
             Ext.Msg.confirm(null, this.getMessage(), function(answer) {
                 if (answer == 'sim') {
@@ -77,22 +77,22 @@ Ext.define('Mba.ux.UpdateApp', {
     selectXPath: function(expr, node) {
         if (document.evaluate) {
             return {
-                list : node.evaluate(expr,node,null,XPathResult.UNORDERED_NODE_ITERATOR_TYPE,null),
-                next : function() { 
-                    return this.list.iterateNext()
+                list: node.evaluate(expr, node, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null),
+                next: function() {
+                    return this.list.iterateNext();
                 }
-            }
+            };
         } else {
             return {
                 list: node.selectNodes(expr),
-                i : 0,
+                i: 0,
                 next: function() {
                     if (this.i > this.list.length) {
                         return null;
                     }
                     return this.list[this.i++];
                 }
-            }
+            };
         }
     }
 });
